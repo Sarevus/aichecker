@@ -37,17 +37,17 @@ android {
 // Важно: этот блок должен быть на верхнем уровне, вне блока android
 chaquopy {
     defaultConfig {
-        version = "3.9" // Замените на нужную версию Python
+        version = "3.8" // Замените на нужную версию Python
         pip {
             install "numpy"
             // Добавьте другие необходимые пакеты здесь
         }
     }
-//    sourceSets {
-//        getByName("main") {
-//            srcDir("some/other/dir")
-//        }
-//    }
+    sourceSets {
+        getByName("main") {
+            srcDir("src/main/python")
+        }
+    }
 }
 
 dependencies {
