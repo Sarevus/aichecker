@@ -45,7 +45,7 @@ chaquopy {
     }
     sourceSets {
         getByName("main") {
-            srcDir("src/main/python")
+            srcDir("src/main/ai")
         }
     }
 }

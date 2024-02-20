@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private void analyzeImage() {
         if (imageUri != null) {
             Python py = Python.getInstance();
-            PyObject pyObj = py.getModule("your_python_script"); // Измените на имя вашего скрипта без расширения
+            PyObject pyObj = py.getModule("main");
             PyObject obj = pyObj.callAttr("analyze_image", imageUri.getPath());
             resultTextView.setText(obj.toString());
         } else {
