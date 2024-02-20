@@ -23,7 +23,6 @@
         android:layout_marginTop="20dp"
         android:contentDescription="@string/preview_image"
         android:scaleType="centerCrop"
-        android:background="@drawable/rounded_button"
         android:src="@drawable/ic_image_placeholder" />
 
     <TextView
