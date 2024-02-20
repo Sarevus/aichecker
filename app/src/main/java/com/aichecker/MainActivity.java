@@ -2,9 +2,11 @@ package com.aichecker;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -47,28 +49,45 @@ public class MainActivity extends AppCompatActivity {
 
     private void analyzeImage() {
         if (imageUri != null) {
-            resultTextView.setText("Файл получен");
-            new Handler().postDelayed(() -> {
-                resultTextView.setText("Обработка");
-                new Handler().postDelayed(() -> {
+            resultTextView.setText("Файл получен.");
+            // Используем один Handler для установки задержек
+            Handler handler = new Handler();
+            handler.postDelayed(() -> {
+                resultTextView.setText("Обработка...");
+                handler.postDelayed(() -> {
                     // Вызов Python функции для анализа изображения
                     Python py = Python.getInstance();
                     PyObject pyObj = py.getModule("main");
                     String imageName = getImageName(imageUri); // Получение имени изображения
                     PyObject obj = pyObj.callAttr("analyze_image", imageName);
                     resultTextView.setText(obj.toString());
-                }, 3000); // Задержка для "Обработка"
+                }, 4000); // Задержка для "Обработка"
             }, 1500); // Задержка для "Файл получен"
         } else {
-            Toast.makeText(this, "Please select an image first", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Пожалуйста, изначально выберите изображение", Toast.LENGTH_SHORT).show();
         }
     }
 
     // Вспомогательный метод для получения имени файла из URI
     private String getImageName(Uri uri) {
-        String imagePath = uri.getPath();
-        String imageName = imagePath.substring(imagePath.lastIndexOf('/') + 1);
-        return imageName;
+        String result = null;
+        if (uri.getScheme().equals("content")) {
+            try (Cursor cursor = getContentResolver().query(uri, null, null, null, null)) {
+                if (cursor != null && cursor.moveToFirst()) {
+                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        if (result == null) {
+            result = uri.getPath();
+            int cut = result.lastIndexOf('/');
+            if (cut != -1) {
+                result = result.substring(cut + 1);
+            }
+        }
+        return result;
     }
 
     @Override
