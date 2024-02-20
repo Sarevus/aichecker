@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">AIChecker</string>
-    <string name="test">Test word, спасите душу разраба</string>
+    <string name="app_name">Стеганография</string>
+    <string name="preview_image">Предпросмотр изображения</string>
+    <string name="select_file_to_upload">Выберите файл для загрузки</string>
+    <string name="file_types_and_size">JPG, PNG, файлы в размере не более 10MB</string>
+    <string name="select_image">Выбрать файл</string>
+    <string name="analyze">Проверить</string>
 
 </resources>
