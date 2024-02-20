@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.chaquo.python.Python;
 import com.chaquo.python.PyObject;
+import android.os.Handler;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,13 +47,28 @@ public class MainActivity extends AppCompatActivity {
 
     private void analyzeImage() {
         if (imageUri != null) {
-            Python py = Python.getInstance();
-            PyObject pyObj = py.getModule("main");
-            PyObject obj = pyObj.callAttr("analyze_image", imageUri.getPath());
-            resultTextView.setText(obj.toString());
+            resultTextView.setText("Файл получен");
+            new Handler().postDelayed(() -> {
+                resultTextView.setText("Обработка");
+                new Handler().postDelayed(() -> {
+                    // Вызов Python функции для анализа изображения
+                    Python py = Python.getInstance();
+                    PyObject pyObj = py.getModule("main");
+                    String imageName = getImageName(imageUri); // Получение имени изображения
+                    PyObject obj = pyObj.callAttr("analyze_image", imageName);
+                    resultTextView.setText(obj.toString());
+                }, 3000); // Задержка для "Обработка"
+            }, 1500); // Задержка для "Файл получен"
         } else {
             Toast.makeText(this, "Please select an image first", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    // Вспомогательный метод для получения имени файла из URI
+    private String getImageName(Uri uri) {
+        String imagePath = uri.getPath();
+        String imageName = imagePath.substring(imagePath.lastIndexOf('/') + 1);
+        return imageName;
     }
 
     @Override
