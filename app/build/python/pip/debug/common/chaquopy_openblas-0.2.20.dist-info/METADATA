@@ -1,0 +1,7 @@
+Metadata-Version: 1.2
+Name: chaquopy-openblas
+Version: 0.2.20
+Summary: 
+Download-URL: 
+Requires-Dist: chaquopy-libgfortran (>=4.9)
+

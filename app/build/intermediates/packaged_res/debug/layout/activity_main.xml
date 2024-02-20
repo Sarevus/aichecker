@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/white">
+
+<!--    <TextView-->
+<!--        android:id="@+id/titleTextView"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Стеганография"-->
+<!--        android:textSize="24sp"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:layout_marginTop="20dp"/>-->
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/preview_image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_image_placeholder" />
+
+    <TextView
+        android:id="@+id/resultTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageView"
+        android:layout_marginTop="30dp"
+        android:padding="10dp"/>
+
+    <ImageView
+        android:id="@+id/uploadIcon"
+        android:layout_width="127dp"
+        android:layout_height="64dp"
+        android:layout_below="@+id/resultTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/ic_upload" />
+
+    <TextView
+        android:id="@+id/selectFilePrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/select_file_to_upload"
+        android:layout_below="@id/uploadIcon"
+        android:layout_centerHorizontal="true"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:id="@+id/fileTypesTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/file_types_and_size"
+        android:layout_below="@id/selectFilePrompt"
+        android:layout_centerHorizontal="true"
+        android:textSize="13sp"
+        android:layout_marginTop="8dp"/>
+
+    <Button
+        android:id="@+id/selectImageBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/select_image"
+        android:layout_below="@id/fileTypesTextView"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/rounded_button"
+        android:padding="1dp"/>
+
+    <Button
+        android:id="@+id/analyzeBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/analyze"
+        android:layout_below="@id/selectImageBtn"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/white"
+        android:background="@drawable/rounded_button"
+        android:padding="1dp"/>
+
+</RelativeLayout>
