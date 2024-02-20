@@ -1,4 +1,4 @@
 package com.aichecker.ui;
 
-public class Main {
+public class Test {
 }

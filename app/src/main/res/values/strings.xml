@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AIChecker</string>
+    <string name="test">Test word, спасите душу разраба</string>
+
 </resources>
